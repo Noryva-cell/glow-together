@@ -1,0 +1,90 @@
+{
+  "name": "DailyReview",
+  "type": "object",
+  "properties": {
+    "date": {
+      "type": "string"
+    },
+    "energy": {
+      "type": "number",
+      "default": 3
+    },
+    "done_titles": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "missed_titles": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "note": {
+      "type": "string"
+    },
+    "ai_message": {
+      "type": "string"
+    },
+    "ai_tips": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "focus": {
+      "type": "string"
+    },
+    "week_message": {
+      "type": "string"
+    },
+    "week_start": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "date"
+  ],
+  "rls": {
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "read": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,233 @@
+{
+  "name": "UserProfile",
+  "type": "object",
+  "properties": {
+    "nickname": {
+      "type": "string"
+    },
+    "age": {
+      "type": "number"
+    },
+    "age_range": {
+      "type": "string"
+    },
+    "height_cm": {
+      "type": "number"
+    },
+    "weight_kg": {
+      "type": "number"
+    },
+    "target_weight_kg": {
+      "type": "number"
+    },
+    "track_weight": {
+      "type": "boolean",
+      "default": false
+    },
+    "activity_level": {
+      "type": "string"
+    },
+    "country": {
+      "type": "string"
+    },
+    "monthly_budget": {
+      "type": "number"
+    },
+    "free_minutes_per_day": {
+      "type": "number"
+    },
+    "wake_time": {
+      "type": "string"
+    },
+    "sleep_time": {
+      "type": "string"
+    },
+    "available_days": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      }
+    },
+    "auto_planning": {
+      "type": "boolean",
+      "default": true
+    },
+    "preferred_slots": {
+      "type": "object",
+      "properties": {
+        "sport": {
+          "type": "string"
+        },
+        "culture": {
+          "type": "string"
+        },
+        "alimentation": {
+          "type": "string"
+        },
+        "menage": {
+          "type": "string"
+        },
+        "organisation": {
+          "type": "string"
+        },
+        "beaute": {
+          "type": "string"
+        },
+        "repos": {
+          "type": "string"
+        }
+      }
+    },
+    "domain_goals": {
+      "type": "object",
+      "properties": {
+        "sport": {
+          "type": "string"
+        },
+        "beaute": {
+          "type": "string"
+        },
+        "alimentation": {
+          "type": "string"
+        },
+        "menage": {
+          "type": "string"
+        },
+        "culture": {
+          "type": "string"
+        },
+        "organisation": {
+          "type": "string"
+        },
+        "personnel": {
+          "type": "string"
+        }
+      }
+    },
+    "goals_selected": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "modules": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "coaching_style": {
+      "type": "string"
+    },
+    "reminder_frequency": {
+      "type": "string"
+    },
+    "diet": {
+      "type": "string"
+    },
+    "allergies": {
+      "type": "string"
+    },
+    "food_likes": {
+      "type": "string"
+    },
+    "food_dislikes": {
+      "type": "string"
+    },
+    "cooking_level": {
+      "type": "string"
+    },
+    "sport_level": {
+      "type": "string"
+    },
+    "equipment": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "skin_type": {
+      "type": "string"
+    },
+    "skin_sensitivity": {
+      "type": "string"
+    },
+    "skin_concerns": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "hair_type": {
+      "type": "string"
+    },
+    "hair_concerns": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "beauty_products": {
+      "type": "string"
+    },
+    "tidy_minutes": {
+      "type": "number"
+    },
+    "culture_topics": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "onboarding_step": {
+      "type": "number",
+      "default": 1
+    },
+    "onboarding_completed": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [],
+  "rls": {
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "read": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

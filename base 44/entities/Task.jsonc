@@ -1,0 +1,167 @@
+{
+  "name": "Task",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string"
+    },
+    "start_time": {
+      "type": "string"
+    },
+    "duration_minutes": {
+      "type": "number",
+      "default": 30
+    },
+    "priority": {
+      "type": "string",
+      "default": "moyenne"
+    },
+    "status": {
+      "type": "string",
+      "default": "a_faire"
+    },
+    "recurrence": {
+      "type": "string",
+      "default": "aucune"
+    },
+    "goal_id": {
+      "type": "string"
+    },
+    "goal_type": {
+      "type": "string"
+    },
+    "generated": {
+      "type": "boolean",
+      "default": false
+    },
+    "completed_at": {
+      "type": "string"
+    },
+    "started_at": {
+      "type": "string"
+    },
+    "template_id": {
+      "type": "string"
+    },
+    "program_id": {
+      "type": "string"
+    },
+    "domain": {
+      "type": "string"
+    },
+    "objective": {
+      "type": "string"
+    },
+    "materials": {
+      "type": "string"
+    },
+    "instructions": {
+      "type": "string"
+    },
+    "user_notes": {
+      "type": "string"
+    },
+    "errors": {
+      "type": "string"
+    },
+    "adaptations": {
+      "type": "string"
+    },
+    "caution": {
+      "type": "string"
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          },
+          "minutes": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "done_steps": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      }
+    },
+    "feedback_status": {
+      "type": "string"
+    },
+    "feedback_difficulty": {
+      "type": "string"
+    },
+    "feedback_feeling": {
+      "type": "number"
+    },
+    "feedback_note": {
+      "type": "string"
+    },
+    "feedback_pain": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "title",
+    "date"
+  ],
+  "rls": {
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "read": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

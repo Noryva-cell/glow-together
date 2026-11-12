@@ -1,0 +1,329 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 350 60% 98%;
+    --foreground: 340 16% 18%;
+    --card: 0 0% 100%;
+    --card-foreground: 340 16% 18%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 340 16% 18%;
+    --primary: 340 66% 52%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 345 55% 96%;
+    --secondary-foreground: 340 28% 26%;
+    --muted: 345 38% 95%;
+    --muted-foreground: 340 10% 46%;
+    --accent: 345 62% 94%;
+    --accent-foreground: 340 28% 24%;
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 345 40% 92%;
+    --input: 345 35% 90%;
+    --ring: 340 66% 52%;
+    --radius: 1.25rem;
+    --chart-1: 340 66% 60%;
+    --chart-2: 150 22% 56%;
+    --chart-3: 32 64% 66%;
+    --chart-4: 205 30% 60%;
+    --chart-5: 322 52% 68%;
+    --sidebar-background: 348 50% 97%;
+    --sidebar-foreground: 340 20% 24%;
+    --sidebar-primary: 340 66% 52%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 345 55% 94%;
+    --sidebar-accent-foreground: 340 24% 24%;
+    --sidebar-border: 345 35% 90%;
+    --sidebar-ring: 340 66% 52%;
+    --font-heading: "Poppins", ui-sans-serif, system-ui, sans-serif;
+    --font-display: "Poppins", ui-sans-serif, system-ui, sans-serif;
+    --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+    --glass: 0 0% 100%;
+    --glow-soft: 345 80% 92%;
+    --glow-cream: 32 70% 94%;
+  }
+
+  .dark {
+    --background: 340 16% 9%;
+    --foreground: 345 28% 94%;
+    --card: 340 13% 14%;
+    --card-foreground: 345 28% 94%;
+    --popover: 340 13% 14%;
+    --popover-foreground: 345 28% 94%;
+    --primary: 340 72% 68%;
+    --primary-foreground: 340 30% 12%;
+    --secondary: 340 10% 20%;
+    --secondary-foreground: 345 28% 94%;
+    --muted: 340 9% 20%;
+    --muted-foreground: 340 10% 66%;
+    --accent: 340 12% 22%;
+    --accent-foreground: 345 28% 94%;
+    --destructive: 0 55% 45%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 340 10% 24%;
+    --input: 340 10% 26%;
+    --ring: 340 72% 68%;
+    --chart-1: 340 72% 68%;
+    --chart-2: 150 24% 60%;
+    --chart-3: 32 50% 62%;
+    --chart-4: 205 26% 62%;
+    --chart-5: 322 50% 70%;
+    --sidebar-background: 340 15% 11%;
+    --sidebar-foreground: 345 28% 94%;
+    --sidebar-primary: 340 72% 68%;
+    --sidebar-primary-foreground: 340 30% 12%;
+    --sidebar-accent: 340 12% 18%;
+    --sidebar-accent-foreground: 345 28% 94%;
+    --sidebar-border: 340 10% 20%;
+    --sidebar-ring: 340 72% 68%;
+    --glass: 340 14% 16%;
+    --glow-soft: 340 30% 22%;
+    --glow-cream: 32 20% 22%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+    -webkit-font-smoothing: antialiased;
+    background-image: radial-gradient(120% 70% at 15% -10%, hsl(var(--glow-soft) / 0.9) 0%, transparent 60%),
+      radial-gradient(100% 60% at 90% 0%, hsl(var(--glow-cream) / 0.9) 0%, transparent 55%);
+    background-attachment: fixed;
+  }
+
+  h1, h2, h3 {
+    @apply font-display tracking-tight;
+  }
+}
+
+@layer utilities {
+  /* Carte vitrée : verre dépoli translucide */
+  .surface {
+    @apply rounded-[1.6rem] border backdrop-blur-xl;
+    background-color: hsl(var(--glass) / 0.66);
+    border-color: hsl(var(--glass) / 0.75);
+    box-shadow: 0 1px 1px hsl(var(--primary) / 0.04), 0 18px 40px -28px hsl(var(--primary) / 0.55);
+  }
+
+  .dark .surface {
+    background-color: hsl(var(--glass) / 0.62);
+    border-color: hsl(var(--foreground) / 0.08);
+    box-shadow: 0 18px 40px -30px rgba(0, 0, 0, 0.9);
+  }
+
+  .glass {
+    background-color: hsl(var(--glass) / 0.7);
+    backdrop-filter: blur(20px) saturate(150%);
+    -webkit-backdrop-filter: blur(20px) saturate(150%);
+    border: 1px solid hsl(var(--glass) / 0.8);
+  }
+
+  .dark .glass {
+    background-color: hsl(var(--glass) / 0.72);
+    border-color: hsl(var(--foreground) / 0.09);
+  }
+
+  /* Bouton principal « Parler à Mimo » */
+  .glow-cta {
+    background-image: linear-gradient(100deg, hsl(var(--primary)) 0%, hsl(var(--chart-1)) 48%, hsl(var(--chart-5)) 100%);
+    box-shadow: 0 14px 30px -14px hsl(var(--primary) / 0.85);
+  }
+
+  .halo {
+    background-image: radial-gradient(60% 60% at 50% 40%, hsl(var(--primary) / 0.18) 0%, transparent 70%);
+  }
+
+  .rise {
+    animation: rise 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .safe-bottom {
+    padding-bottom: calc(env(safe-area-inset-bottom) + 0.4rem);
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .mimo-float {
+    animation: mimoFloat 4.5s ease-in-out infinite;
+  }
+
+  .mimo-breath {
+    animation: mimoBreath 6s ease-in-out infinite;
+  }
+
+  .mimo-reaction {
+    animation: mimoPop 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  /* Mimo vivant : les animations tournent en continu sur les éléments SVG */
+  .mimo-anim-sway {
+    animation: mimoSway 6.5s ease-in-out infinite;
+    transform-box: fill-box;
+    transform-origin: 50% 94%;
+  }
+
+  .mimo-anim-blink {
+    animation: mimoBlink 5.4s ease-in-out infinite;
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+
+  .mimo-anim-look {
+    animation: mimoLook 9s ease-in-out infinite;
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+
+  .mimo-anim-wave {
+    animation: mimoWave 3.6s ease-in-out infinite;
+    transform-box: fill-box;
+    transform-origin: 90% 12%;
+  }
+
+  .mimo-anim-mouth {
+    animation: mimoMouth 2.4s ease-in-out infinite;
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+
+  .mimo-anim-tuft {
+    animation: mimoTuft 4.2s ease-in-out infinite;
+    transform-box: fill-box;
+    transform-origin: bottom center;
+  }
+}
+
+@keyframes mimoSway {
+  0%, 100% {
+    transform: rotate(-1.6deg) translateY(0);
+  }
+  50% {
+    transform: rotate(1.6deg) translateY(-2px);
+  }
+}
+
+@keyframes mimoBlink {
+  0%, 88%, 100% {
+    transform: scaleY(1);
+  }
+  92% {
+    transform: scaleY(0.08);
+  }
+}
+
+@keyframes mimoLook {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  18% {
+    transform: translateX(-3px);
+  }
+  36% {
+    transform: translateX(3px);
+  }
+  58% {
+    transform: translateX(0);
+  }
+  76% {
+    transform: translateX(-2px);
+  }
+}
+
+@keyframes mimoWave {
+  0%, 60%, 100% {
+    transform: rotate(0deg);
+  }
+  12% {
+    transform: rotate(-16deg);
+  }
+  26% {
+    transform: rotate(8deg);
+  }
+  40% {
+    transform: rotate(-10deg);
+  }
+  52% {
+    transform: rotate(4deg);
+  }
+}
+
+@keyframes mimoMouth {
+  0%, 100% {
+    transform: scaleY(1);
+  }
+  45% {
+    transform: scaleY(0.5);
+  }
+  70% {
+    transform: scaleY(0.85);
+  }
+}
+
+@keyframes mimoTuft {
+  0%, 100% {
+    transform: rotate(-7deg);
+  }
+  50% {
+    transform: rotate(7deg);
+  }
+}
+
+@keyframes mimoFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes mimoBreath {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.025);
+  }
+}
+
+@keyframes mimoPop {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  35% {
+    transform: scale(1.05) rotate(-1.6deg);
+  }
+  70% {
+    transform: scale(0.985) rotate(1.2deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

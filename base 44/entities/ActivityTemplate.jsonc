@@ -1,0 +1,113 @@
+{
+  "name": "ActivityTemplate",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string",
+      "default": "organisation"
+    },
+    "domain": {
+      "type": "string"
+    },
+    "duration_minutes": {
+      "type": "number",
+      "default": 30
+    },
+    "objective": {
+      "type": "string"
+    },
+    "instructions": {
+      "type": "string"
+    },
+    "materials": {
+      "type": "string"
+    },
+    "errors": {
+      "type": "string"
+    },
+    "adaptations": {
+      "type": "string"
+    },
+    "caution": {
+      "type": "string"
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          },
+          "minutes": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "goal_id": {
+      "type": "string"
+    },
+    "program_id": {
+      "type": "string"
+    },
+    "origin": {
+      "type": "string",
+      "default": "manuel"
+    },
+    "active": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "required": [
+    "name"
+  ],
+  "rls": {
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "read": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}
